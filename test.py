@@ -13,19 +13,15 @@ def show_image(image):
 
 def show_all_faces(face_locations,img):
     for (top, right, bottom, left) in face_locations:
-        # Draw a box around the face
         cv2.rectangle(img, (left, top), (right, bottom), (0, 0, 255), 2)
-        #roi_gray = gray[y:y+h, x:x+w]
-        #roi_color = img[y:y+h, x:x+w]
     return img
 
 def show_individual_faces(face_locations,img):
     o_img = img.copy()
     for (top, right, bottom, left) in face_locations:
         cv2.rectangle(img, (left, top), (right, bottom), (0, 0, 255), 2)
-        #t_sample = img[y: y + h, x: x + w]
-        yield(img)
-        #yield (t_sample,img)
+        face_img = img[top: bottom , left: right]       # a snippet for taking user input for that face.
+        yield(img,face_img)
         img = o_img.copy()
 
 
@@ -42,19 +38,21 @@ def main():
 
         img = cv2.imread(test)
         face_locations = face_recognition.face_locations(img)
-        print "Detected {} faces in this image.".format(len(face_locations))
         
         if len(face_locations)>0:
+            print "Detected {} faces in this image.".format(len(face_locations))
             show_image(img)
             # uncomment the following line to mark all the faces.
             #img = show_all_faces(face_locations,img) 
             #show_image(img)
 
             # Generator implementation for individual faces
-            for i in show_individual_faces(face_locations, img):
-                #images.append(sample)
-                show_image(i)
+            for faces,face_snip in show_individual_faces(face_locations, img):
+                show_image(face_snip)       #FW: Save this snippet as a temporary test data.
+                #show_image(faces)
             cv2.destroyAllWindows()
+        else:
+            print "No face detected in this image."
 
 if __name__ == "__main__":
     main()
