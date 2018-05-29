@@ -33,10 +33,10 @@ def save_snippet():
     else:
         #code if the sample name exists.
         i = 1
-        newname = os.path.join(config.train_cache,snippet_name,"_",i,config.cache_img_extension)
-        if os.path.exists(newname):
-            print os.listdir 
-    
+        newname = os.path.join(config.train_cache,user_input+"_"+str(i)+config.cache_img_extension)
+        if not os.path.exists(newname):
+            shutil.copy(config.cache_img_name+config.cache_img_extension,newname) 
+
 def dont_save_snippet():
     global app
     app.destroy()
