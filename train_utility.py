@@ -3,6 +3,7 @@ import os
 import config
 import image_handlers as ih
 
+
 def show_train_snippets():
     snips = [os.path.join(config.train_cache,item) for item in os.listdir(config.train_cache)]
     for snip in snips:
