@@ -3,7 +3,13 @@ import cv2
 import os,sys
 import param_process_functions as pp
 import image_handlers as ih
-
+import config
+ 
+def clear_cache():
+    try:
+        os.remove(config.cache)
+    except:
+        pass
 def main():
     test_image = pp.check_params()
     print "Done compiling params and total number of images to be processed is: " + str(len(test_image))
@@ -20,19 +26,23 @@ def main():
         
         if len(face_locations)>0:
             print "Detected {} faces in this image.".format(len(face_locations))
-            ih.show_image(img)
+            #ih.show_image(img)
             # uncomment the following line to mark all the faces.
             #img = ih.show_all_faces(face_locations,img) 
             #show_image(img)
 
             # Generator implementation for individual faces
-            for faces,face_snip in ih.show_individual_faces(face_locations, img):
-                ih.show_image(face_snip)       #FW: Save this snippet as a temporary test data.
+            for face in ih.show_individual_faces(face_locations, img):
+                ih.show_face_snippet()
+                #ih.show_face_snippet(face_snippet)
+                #ih.show_image(face_snip)       #FW: Save this snippet as a temporary test data.
                 #show_image(faces)
             cv2.destroyAllWindows()
         else:
             print "No face detected in this image."
-
-if __name__ == "__main__":
-    ih.show_face_snippet()
-    #main()
+if __name__ =="__main__":
+    try:
+        main()
+    except :
+        pass
+    clear_cache()
