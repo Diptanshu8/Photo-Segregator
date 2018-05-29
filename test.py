@@ -34,4 +34,5 @@ def main():
             print "No face detected in this image."
 
 if __name__ == "__main__":
-    main()
+    ih.show_face_snippet()
+    #main()

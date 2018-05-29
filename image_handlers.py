@@ -1,4 +1,6 @@
 import cv2
+import Tkinter as T
+import tkMessageBox
 def show_image(image):
     cv2.imshow('Image',image)
     while(1):
@@ -7,7 +9,23 @@ def show_image(image):
 	    exit()
 	elif k==32:
 	    break
-
+def save_snippet():
+    print "Submit Button Clicked!"
+def dont_save_snippet():
+    print "Cancel Button Clicked!"
+    
+#def show_face_snippet(face_snippet):
+def show_face_snippet():
+    app = T.Tk()
+    L1 = T.Label(app, text="Snippet Name")
+    L1.pack()
+    E1 = T.Entry(app)
+    E1.pack()
+    BL = T.Button(app, text ="Submit", command = save_snippet)
+    BR = T.Button(app, text ="Cancel", command = dont_save_snippet)
+    BL.pack(side = T.LEFT)
+    BR.pack(side = T.RIGHT)
+    app.mainloop()
 def show_all_faces(face_locations,img):
     for (top, right, bottom, left) in face_locations:
         cv2.rectangle(img, (left, top), (right, bottom), (0, 0, 255), 2)
