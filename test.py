@@ -7,7 +7,7 @@ import config
  
 def clear_cache():
     try:
-        os.remove(config.cache)
+        os.remove(config.cache_img_name+config.cache_img_extension)
     except:
         pass
 def main():
