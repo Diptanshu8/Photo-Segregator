@@ -1,6 +1,5 @@
 import face_recognition
 import cv2
-import argparse
 import os,sys
 import param_process_functions as pp
 import image_handlers as ih
@@ -14,7 +13,8 @@ def clear_cache():
 
 def main():
     test_image = pp.check_params()
-    print "Done compiling params and total number of images to be processed is: " + str(len(test_image))
+    print "Done compiling params."
+    print "Total number of images to be processed is: " + str(len(test_image))
     for test in test_image:
     	print "Processing image:\t"+test
 
