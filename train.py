@@ -5,6 +5,7 @@ import param_process_functions as pp
 import image_handlers as ih
 import config
  
+# this function only deleted the cached image after the execution.
 def clear_cache():
     try:
         os.remove(config.cache_img_name+config.cache_img_extension)
