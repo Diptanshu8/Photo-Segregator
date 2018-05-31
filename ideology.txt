@@ -1,0 +1,9 @@
+IDEOLOGY:
+    train.py is mainly used to detect and recognize some sample faces 
+    from a group of photos provided by the user. Later on we can merge this to be a feature of the main app.
+
+    recognize.py is used to recognize the photos from the larger batch of files which use the detected
+    snippets from the previous train.py.
+
+    Another use case could be to identify distinct faces from a batch of photos. This feature requires a
+    conjunction of train.py and recognize.py.
