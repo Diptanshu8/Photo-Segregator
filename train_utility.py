@@ -16,6 +16,9 @@ def show_train_snippets():
         ih.show_image(img)
 
 def delete_train_snippets():
+    if not os.path.isdir(config.train_cache) or not os.listdir(config.train_cache):
+        print "Error: There are no trainned snippets as cache."
+        return 
     user_choice = raw_input("Are you sure you want to delete the trained snippets?")
     valid = {"yes": True, "y": True, "Y": True, "YES" : True, "Yes": True,
             "no": False, "n": False, "NO": False, "No": False, "N": False}
@@ -45,7 +48,7 @@ if __name__=="__main__":
     results = parser.parse_args()
     if not any(vars(results).values()):
         parser.error("No arguments provided. Either of -s or -d to be provided.")
-    elif results.s:
+    if results.s:
         show_train_snippets()
-    elif results.d:
+    if results.d:
         delete_train_snippets()
