@@ -40,6 +40,21 @@ def save_snippet():
 def dont_save_snippet():
     global app
     app.destroy()
+
+def end_snippet_training():
+    global app
+    if app:
+        app.destroy()
+    user_choice = raw_input("Are you sure you want to end snippet training?")
+    valid = {"yes": True, "y": True, "Y": True, "YES" : True, "Yes": True,          # make this valid global
+            "no": False, "n": False, "NO": False, "No": False, "N": False}
+    if not valid.has_key(user_choice):
+        print "Valid user_choices are:"
+        print valid.keys()
+        end_snippet_training()
+    else:
+        if valid[user_choice]:
+            exit()
     
 def show_face_snippet():
     global app
@@ -62,10 +77,12 @@ def show_face_snippet():
     E.pack()
     E.focus_set()
     
-    BL = T.Button(app, text ="Submit", command = save_snippet)
-    BR = T.Button(app, text ="Cancel", command = dont_save_snippet)
-    BL.pack(side = T.LEFT)
-    BR.pack(side = T.RIGHT)
+    BS = T.Button(app, text ="Submit", command = save_snippet)
+    BE = T.Button(app, text ="End", command = end_snippet_training)
+    BC = T.Button(app, text ="Cancel", command = dont_save_snippet)
+    BS.pack(side = T.LEFT)
+    BC.pack(side = T.RIGHT)
+    BE.pack()
     
     app.mainloop()
 
