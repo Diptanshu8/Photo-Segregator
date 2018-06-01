@@ -29,17 +29,15 @@ def main():
         
         if len(face_locations)>0:
             print "Detected {} faces in this image.".format(len(face_locations))
-            #ih.show_image(img)
+            #ih.show_image(sample)
 
             # uncomment the following line to mark all the faces.
             #img = ih.show_all_faces(face_locations,img) 
-            #show_image(img)
+            #show_image(sample)
 
             # Generator implementation for individual faces
             for face in ih.show_individual_faces(face_locations, img):
                 ih.show_face_snippet()
-                #show_image(face)      # Uncomment this line to simulatenously see the highlighted face 
-                                        # in original image.
             cv2.destroyAllWindows()
         else:
             print "No face detected in this image."

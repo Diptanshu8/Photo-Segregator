@@ -7,14 +7,14 @@ from PIL import Image, ImageTk
 
 import config
 
-
 def show_image(image):
-    cv2.imshow('Image',image)
+    img = cv2.imread(image)
+    cv2.imshow('Image',img)
     while(1):
 	k = cv2.waitKey(0)
 	if k==27: #stopping for escape
 	    exit()
-	elif k==32:
+	elif k==32: # continuing on spacebar
 	    break
 
 def save_snippet():

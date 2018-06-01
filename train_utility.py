@@ -11,9 +11,8 @@ def show_train_snippets():
         return 
     snips = [os.path.join(config.train_cache,item) for item in os.listdir(config.train_cache)]
     for i,snip in enumerate(snips):
-        img = cv2.imread(snip)
         print "Image<{}>: {}".format(i,snip)
-        ih.show_image(img)
+        ih.show_image(snip)
 
 def delete_train_snippets():
     if not os.path.isdir(config.train_cache) or not os.listdir(config.train_cache):
