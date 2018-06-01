@@ -11,7 +11,7 @@ def show_train_snippets():
         return 
     snips = [os.path.join(config.train_cache,item) for item in os.listdir(config.train_cache)]
     for i,snip in enumerate(snips):
-        print "Image<{}>: {}".format(i,snip)
+        print "Image<{}>: {}".format(i+1,snip)
         ih.show_image(snip)
 
 def delete_train_snippets():
