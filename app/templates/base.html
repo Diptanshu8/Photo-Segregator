@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="PhotoSegregatorApp">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 <style>
 div.gallery {
   border: 1px solid #ccc;
@@ -50,18 +53,21 @@ div.desc {
 }
 </style>
 </head>
-<body>
-
+<body ng-controller="PhotoScanController">
 <h2>Responsive Image Gallery</h2>
 <h4>Resize the browser window to see the effect.</h4>
 {% if images %}
 		{% for img in images %}
 			<div class="responsive">
 			  <div class="gallery">
-				<a target="_blank" href="img_5terre.jpg">
+				<a target="_blank">
 				  <img src="{{url_for('static',filename=img)}}" alt="NA" width="600" height="400">
-				</a>
-				<div class="desc">Add a description of the image here</div>
+				  <form role="form">
+					  <div class="desc">
+						  <input type="button" align="middle" value='scan' ng-click="scanImage(img)" ng-model="img">
+					  </div>
+				  </form>
+			    </a>
 			  </div>
 			</div>
 		{% endfor %}
@@ -70,6 +76,10 @@ div.desc {
 {% endif %}
 
 <div class="clearfix"></div>
+<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
 
