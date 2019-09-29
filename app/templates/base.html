@@ -51,23 +51,99 @@ div.desc {
   display: table;
   clear: both;
 }
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  border: 1px solid #fff;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 100px;
+  width: 100px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "x";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}
+
+.topcorner{
+   position:float;
+   top:0;
+   right:0;
+}
+
+.btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: black;
+}
 </style>
+
 </head>
 <body ng-controller="PhotoScanController">
 <h2>Responsive Image Gallery</h2>
 <h4>Resize the browser window to see the effect.</h4>
+<div class="topcorner">
+	<button class="btn" ng-click="test();">Scan</button>
+</div>
 {% if images %}
 		{% for img in images %}
 			<div class="responsive">
 			  <div class="gallery">
-				<a target="_blank">
-				  <img src="{{url_for('static',filename=img)}}" alt="NA" width="600" height="400">
-				  <form role="form">
-					  <div class="desc">
-						  <input type="button" align="middle" value='scan' ng-click="scanImage(img)" ng-model="img">
-					  </div>
-				  </form>
-			    </a>
+                  <input type="checkbox" id={{ img }} />
+                      <label for={{ img }}>
+				  			<img src="{{url_for('static',filename=img)}}" alt="NA" height=100% ng-click="test_image();">
+                      </label>
 			  </div>
 			</div>
 		{% endfor %}
@@ -80,6 +156,11 @@ div.desc {
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="{{ url_for('static', filename='main.js') }}"></script>
+<script>
+function button_click() {
+      $console.log("HI SKRILL");
+    };
+</script>
 </body>
 </html>
 
