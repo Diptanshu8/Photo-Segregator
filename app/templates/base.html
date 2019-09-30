@@ -134,15 +134,15 @@ label img {
 <h2>Responsive Image Gallery</h2>
 <h4>Resize the browser window to see the effect.</h4>
 <div class="topcorner">
-	<button class="btn" ng-click="test();">Scan</button>
+	<button class="btn" ng-click="scanImages();">Scan</button>
 </div>
 {% if images %}
 		{% for img in images %}
 			<div class="responsive">
 			  <div class="gallery">
-                  <input type="checkbox" id={{ img }} />
-                      <label for={{ img }}>
-				  			<img src="{{url_for('static',filename=img)}}" alt="NA" height=100% ng-click="test_image();">
+                  <input type="checkbox" id="{{url_for('static',filename=img)}}" name="cb" />
+                      <label for="{{url_for('static',filename=img)}}">
+				  			<img src="{{url_for('static',filename=img)}}" alt="NA" height=100% >
                       </label>
 			  </div>
 			</div>
@@ -156,11 +156,6 @@ label img {
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="{{ url_for('static', filename='main.js') }}"></script>
-<script>
-function button_click() {
-      $console.log("HI SKRILL");
-    };
-</script>
 </body>
 </html>
 
